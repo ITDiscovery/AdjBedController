@@ -8,7 +8,7 @@ Turning a motor on and off, or two motors one direction or another, is a really 
 
 First let's break down the board that came with my bed:
 
-It uses a standard (but pretty old and cheap) micro controller to drive a biased transistor that controls 
+It uses a standard (but pretty old and cheap) STM8S003 micro controller to drive a biased transistor that drives the base of an NPN transistor via a 3.3V GPIO. 
 
 ![alt text](MotorDriverSchematic.png?raw=true)
 
