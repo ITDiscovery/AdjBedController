@@ -48,6 +48,7 @@ I just lost my remote (never mind that it didn't have any memory settings), so I
 I modified it a bit, and added the feedback circuit:
 ![alt text](BetterMotorDriverSchematic.png?raw=true)
 
+This circuit adds an opto-isolator to protect the ESP-32 if the switching transistor ever fails by shorting out. Not show is the same resistor network that feeds back to the microcontroller from the NC connection of the relay. As of this writing, I have not tried this circuit or produced the boards to verfify it's operation.
 
 
 
