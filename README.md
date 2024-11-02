@@ -20,7 +20,7 @@ There's a catch though: These motors have a switch in them so that when the moto
 
 This connects the NC part of the relay (3-4) via dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
 
-Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. 
+Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32.
 ![alt text](AdjBedMotorController.jpg?raw=true)   
 
 Here's a better one, (but more expensive):
