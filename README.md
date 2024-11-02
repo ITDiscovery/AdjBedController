@@ -23,7 +23,7 @@ This connects the NC part of the relay (3-4) via dropping resistor R41 and dampi
 Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32.
 ![alt text](AdjBedMotorController.jpg?raw=true)
 
-Turn the motor on with the ESP-32 and motoring the output is pretty easy, and doing this via a subroutine is the best way to go:
+Turn the motor on with the ESP-32 and monitoring the output is pretty easy, and doing this via a subroutine is the best way to go:
 
 ```
 void MotorOn(int relaypin, int motorpin, int runtm) {
