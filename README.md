@@ -21,12 +21,34 @@ There's a catch though: These motors have a switch in them so that when the moto
 This connects the NC part of the relay (3-4) via dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
 
 Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32.
-![alt text](AdjBedMotorController.jpg?raw=true)   
+![alt text](AdjBedMotorController.jpg?raw=true)
 
-Here's a better one, (but more expensive):
+Turn the motor on with the ESP-32 and motoring the output is pretty easy, and doing this via a subroutine is the best way to go:
+
+```
+void MotorOn(int relaypin, int motorpin, int runtm) {
+    digitalWrite(relaypin, HIGH);
+    int j=0;
+    delay(100);
+    while ((j<=runtm) && (analogRead(motorpin) >  MotorOnThresh)) {
+      j++;
+      delay(100);
+    }
+    digitalWrite(relaypin,LOW);
+    //Add delay for multiple MotorOn commands
+    delay(400);
+}
+```
+It requires a little experimentation to understand what the threshold is for when the motor is on versus off. I measure that input every 100mSec and send the output LOW if the motor hits the endstop.
+
+## Your controller board is damaged!
+
+I just lost my remote (never mind that it didn't have any memory settings), so I just hacked the controller board, but this is a pretty easy circuit to design, and there are much more robust examples to turn on two motors in two directions. I found a good one here: 'https://circuitdigest.com/microcontroller-projects/arduino-dc-motor-speed-direction-control'
+
+I modified it a bit, and added the feedback circuit:
 ![alt text](BetterMotorDriverSchematic.png?raw=true)
 
 
 
 
-https://circuitdigest.com/microcontroller-projects/arduino-dc-motor-speed-direction-control
+
