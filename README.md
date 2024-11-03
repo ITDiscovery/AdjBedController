@@ -11,7 +11,7 @@ Turning a motor on and off, or two motors one direction or another, is a really 
 First let's break down the board that came with my bed:
 ![alt text](AdjBedRelayCrkt.JPG?raw=true)
 
-It uses a standard (but pretty old and cheap) STM8S003 micro controller to drive a biased transistor that drives the base of an NPN transistor via a 3.3V GPIO with the help of R21 and R22. When the transistor T5 is on, current flows through the coil of the relay to ground, and the relay switches from 3-4 to 3-5, turning the motor on in that direction. There are 3 more of these circuits to provide the two motors with two directions. Two blocking diodes D19 and D20 allow the companion relay K4 to apply voltage to the motor in the opposite direction.  
+It uses a standard (but pretty old and cheap) STM8S003 micro controller via a 3.3V GPIO to drive the base of an NPN transistor (see R21 and R22). When the transistor T5 is on, current flows through the coil of the relay to ground, and the relay switches from 3-4 to 3-5, turning the motor on in that direction. There are 3 more of these circuits to provide the two motors with two directions. The relays are wired in such a way that 
 
 ![alt text](MotorDriverSchematic.jpg?raw=true)
 
@@ -40,6 +40,9 @@ void MotorOn(int relaypin, int motorpin, int runtm) {
 }
 ```
 It requires a little experimentation to understand what the threshold is for when the motor is on versus off. I measure that input every 100mSec and send the output LOW if the motor hits the endstop.
+
+Here's the web page for this application:
+![alt text](Motor-WebPage.jpg?raw=true) 
 
 ## Your controller board is damaged!
 
