@@ -18,7 +18,7 @@ It uses a standard (but pretty old and cheap) STM8S003 micro controller to drive
 There's a catch though: These motors have a switch in them so that when the motor has reached maximum or minimum, the motor turns off. The microcontroller must keep an eye on that so that it can switch off the relay when the motor goes to open circuit. That's pretty easy, as you can see here:
 ![alt text](AdjBedFeedBack.JPG?raw=true)  
 
-This connects the NC part of the relay (3-4) via dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
+This connects the NC part of the relay (3-4) via a shunt resistor and a dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
 
 Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32.
 ![alt text](AdjBedMotorController.jpg?raw=true)
