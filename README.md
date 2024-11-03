@@ -16,7 +16,7 @@ It uses a standard (but pretty old and cheap) STM8S003 micro controller to drive
 ![alt text](MotorDriverSchematic.jpg?raw=true)
 
 There's a catch though: These motors have a switch in them so that when the motor has reached maximum or minimum, the motor turns off. The microcontroller must keep an eye on that so that it can switch off the relay when the motor goes to open circuit. That's pretty easy, as you can see here:
-![alt text](AdjBedFeedBack.JPG?raw=true)  
+![alt text](AdjBedFeedBack.JPG?raw=true)
 
 This connects the NC part of the relay (3-4) via a shunt resistor and a dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
 
@@ -43,12 +43,26 @@ It requires a little experimentation to understand what the threshold is for whe
 
 ## Your controller board is damaged!
 
-I just lost my remote (never mind that it didn't have any memory settings), so I just hacked the controller board, but this is a pretty easy circuit to design, and there are much more robust examples to turn on two motors in two directions. I found a good one here: 'https://circuitdigest.com/microcontroller-projects/arduino-dc-motor-speed-direction-control'
+I just lost my remote (never mind that it didn't have any memory settings), so I just hacked the controller board, but this is a pretty easy circuit to design, and there are much more robust examples to turn on two motors in two directions. I found a good one here:
 
-I modified it a bit, and added the feedback circuit:
-![alt text](BetterMotorDriverSchematic.png?raw=true)
+https://circuitdigest.com/microcontroller-projects/arduino-dc-motor-speed-direction-control
 
-This circuit adds an opto-isolator to protect the ESP-32 if the switching transistor ever fails by shorting out. Not show is the same resistor network that feeds back to the microcontroller from the NC connection of the relay. As of this writing, I have not tried this circuit or produced the boards to verfify it's operation. The entire schematic and pcb layout can be found in this repository.
+My design moves the speed controlling MOSFET to the input of both relays primarily because the software should never run both motors at the same time. The MOSFET circuit is optional, it just seems safer to me to allow the microcontroller to shut down the power if it sees a safety issue (like overheating). The opto-isolator I combined into a single package, as 4 are pretty close to the same price as one. That is a standard (but more expensive) solution that protects the ESP-32 if the switching transistor ever fails by shorting out.
+
+Here's a simulation of how the a typical MotorOn happens:
+
+Before the Motor Starts:
+![alt text](MotorOn-Start.jpg?raw=true) 
+The Motor is running forward:
+![alt text](MotorOn-RunFwd.jpg?raw=true) 
+The Motor is running backward:
+![alt text](MotorOn-RunBck.jpg?raw=true)
+What happens if the motor shuts off during MotorOn:
+![alt text](MotorOn-MotorStopped.jpg?raw=true)
+Nothing happens if you turn on both relays at the same time (but don't do this):
+![alt text](MotorOn-BothRelays.jpg?raw=true)
+
+As of this writing, I have not tried this circuit or produced the boards to verfify it's operation. The entire schematic and pcb layout can be found in this repository.
 
 
 
