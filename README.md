@@ -11,7 +11,7 @@ Turning a motor on and off, or two motors one direction or another, is a really 
 First let's break down the board that came with my bed:
 ![alt text](AdjBedRelayCrkt.JPG?raw=true)
 
-It uses a standard (but pretty old and cheap) STM8S003 micro controller via a 3.3V GPIO to drive the base of an NPN transistor (see R21 and R22). When the transistor T5 is on, current flows through the coil of the relay to ground, and the relay switches from 3-4 to 3-5, turning the motor on in that direction. There are 3 more of these circuits to provide the two motors with two directions. The relays are wired in such a way that 
+It uses a standard (but pretty old and cheap) STM8S003 micro controller via a 3.3V GPIO to drive the base of an NPN transistor (see R21 and R22). When the transistor T5 is on, current flows through the coil of the relay to ground, and the relay switches from 3-4 to 3-5, turning the motor on in that direction. There are 3 more of these circuits to provide the two motors with two directions. The relays are wired similar to what you would see with light switches ganged together.
 
 ![alt text](MotorDriverSchematic.jpg?raw=true)
 
@@ -20,8 +20,8 @@ There's a catch though: These motors have a switch in them so that when the moto
 
 This connects the NC part of the relay (3-4) via a shunt resistor and a dropping resistor R41 and damping capacitor C24 back to the the microcontroller analog input. That's placed so that it doesn't really matter which relay of the pair (K3 and K4 in our case) is on, voltage will drop as long as the motor is running. You can see the companion circuit for the other motor here at R40/C23. 
 
-Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32.
-![alt text](AdjBedMotorController.jpg?raw=true)
+Since the controller board isn't damaged, I simply used those circuits in place and replaced the STM8S003 with an ESP-32. To make sure the STM8S003 didn't interfere, I eventually removed it completely. Initially though I removed the resistor at R21, and put a 2k resistor on the GPIO of the ESP-32. This board at least has a voltage regulator, so it was pretty easy to pick up power and ground from the board for the ESP-32. I'm still having a weird problem where K3 turns on periodically for no reason. 
+![alt text](AdjBedMotorController.jpg?raw=true) 
 
 Turn the motor on with the ESP-32 and monitoring the output is pretty easy, and doing this via a subroutine is the best way to go:
 
@@ -42,7 +42,7 @@ void MotorOn(int relaypin, int motorpin, int runtm) {
 It requires a little experimentation to understand what the threshold is for when the motor is on versus off. I measure that input every 100mSec and send the output LOW if the motor hits the endstop.
 
 Here's the web page for this application:
-![alt text](Motor-WebPage.jpg?raw=true) 
+![alt text](MotorOn-WebPage.jpg?raw=true) 
 
 ## Your controller board is damaged!
 
