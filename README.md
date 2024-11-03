@@ -54,16 +54,16 @@ My design moves the speed controlling MOSFET to the input of both relays primari
 
 Here's a simulation of how the a typical MotorOn happens:
 
-Before the Motor Starts:
-![alt text](MotorOn-Start.jpg?raw=true) 
-The Motor is running forward:
-![alt text](MotorOn-RunFwd.jpg?raw=true) 
-The Motor is running backward:
-![alt text](MotorOn-RunBck.jpg?raw=true)
-What happens if the motor shuts off during MotorOn:
-![alt text](MotorOn-MotorStopped.jpg?raw=true)
-Nothing happens if you turn on both relays at the same time (but don't do this):
-![alt text](MotorOn-BothRelays.jpg?raw=true)
+Before the Motor Starts:  \
+![alt text](MotorOn-Start.jpg?raw=true)   \
+The Motor is running forward:  \
+![alt text](MotorOn-RunFwd.jpg?raw=true)  \
+The Motor is running backward:  \
+![alt text](MotorOn-RunBck.jpg?raw=true)  \
+What happens if the motor shuts off during MotorOn:  \
+![alt text](MotorOn-MotorStopped.jpg?raw=true)  \
+Nothing happens if you turn on both relays at the same time (but don't do this):  \
+![alt text](MotorOn-BothRelays.jpg?raw=true)  \
 
 As of this writing, I have not tried this circuit or produced the boards to verfify it's operation. The entire schematic and pcb layout can be found in this repository.
 
