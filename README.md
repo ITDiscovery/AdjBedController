@@ -65,7 +65,8 @@ What happens if the motor shuts off during MotorOn:  \
 Nothing happens if you turn on both relays at the same time (but don't do this):  \
 ![alt text](MotorOn-BothRelays.jpg?raw=true)  \
 
-As of this writing, I have not tried this circuit or produced the boards to verfify it's operation. The entire schematic and pcb layout can be found in this repository.
+I'm working on a board as a replacement for the entirety of the controller board above using the relay mechanism. The power input is the 30VDC adapter
+that comes with these devices typically, and switches this voltage over to motors. Version 1 used a simple 7805 or a Hi-Link isolated mini switching supply, which due to the 30VDC input, didn't last long. I then tried an LM317, which worked....but got really hot (for the same reason). Learning my lesson that stepping down such a large voltage drop is better via a buck converter, Version 2 (which fixes a bunch of other dumb mistakes) uses a LM2596S-5.0 which is SMD mount (along with it's companion coil), but hopefully is hand solderable. I want this board to be easy to assemble, and may convert it to an all SMD design so that it can be fully manufactured by JCLPCB.
 
 
 
