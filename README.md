@@ -68,6 +68,12 @@ Nothing happens if you turn on both relays at the same time (but don't do this):
 I'm working on a board as a replacement for the entirety of the controller board above using the relay mechanism. The power input is the 30VDC adapter
 that comes with these devices typically, and switches this voltage over to motors. Version 1 used a simple 7805 or a Hi-Link isolated mini switching supply, which due to the 30VDC input, didn't last long. I then tried an LM317, which worked....but got really hot (for the same reason). Learning my lesson that stepping down such a large voltage drop is better via a buck converter, Version 2 (which fixes a bunch of other dumb mistakes) uses a LM2596S-5.0 which is SMD mount (along with it's companion coil), but hopefully is hand solderable. I want this board to be easy to assemble, and may convert it to an all SMD design so that it can be fully manufactured by JCLPCB.
 
+To do for version 3:
 
+-Remove the line from Pin 5 to Ground.
+-Enlarge the Schottky diode pads
+-Widen 29V and other traces in buck converter area.
+-Add 8 pin din for manual bypass controller
+-Troubleshooting/assembly section. Specifically not to connection power supply until the 5V is verified, and that if the voltage is off, check for a good connection on the 56uH coil.
 
 
