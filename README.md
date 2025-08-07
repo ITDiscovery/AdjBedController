@@ -77,6 +77,7 @@ To do for version 3:
 - Troubleshooting/assembly section. Specifically not to connection power supply until the 5V is verified, and that if the voltage is off, check for a good connection on the 56uH coil.
 
 Proper H-Bridge wiring:
+
 Relay K1:
 - Common (COM): Connected to the red wire of the output.
 - Normally Open (NO): Connected to Ground (GND).
