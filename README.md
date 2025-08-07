@@ -77,19 +77,17 @@ To do for version 3:
 - Troubleshooting/assembly section. Specifically not to connection power supply until the 5V is verified, and that if the voltage is off, check for a good connection on the 56uH coil.
 
 Proper H-Bridge wiring:
-Relay 1 (Forward/Reverse):
+Relay K1:
+- Common (COM): Connected to the red wire of the output.
+- Normally Open (NO): Connected to Ground (GND).
+- Normally Closed (NC): Connected to the +29V Rail.
 
-- Pin 1 (Common): Connect to one side of the motor.
-- Pin 3 (NO): Connect to the 29V rail.
-- Pin 4 (NC): Connect to ground.
+Relay K2
+- Common (COM): Connected to the black wire of the output.
+- Normally Open (NO): Connected to the +29V Rail.
+- Normally Closed (NC): Connected to Ground (GND).
 
-Relay 2 (Forward/Reverse):
-
-- Pin 1 (Common): Connect to the other side of the motor.
-- Pin 3 (NO): Connect to ground.
-- Pin 4 (NC): Connect to the 29V rail.
-
-With this wiring, to make the motor run in one direction, you would activate Relay 1 to connect one motor terminal to 29V, and leave Relay 2 un-energized to connect the other motor terminal to 29V. To reverse the direction, you would activate Relay 2 and leave Relay 1 un-energized.
+With this wiring, to make the motor run in one direction, you would activate Relay K1 to connect one motor terminal to 29V, and leave Relay K2 un-energized to connect the other motor terminal to 29V. To reverse the direction, you would activate Relay 2 and leave Relay 1 un-energized.
 
 You must also ensure that the control logic in your ESP32 never activates both relays in a pair at the same time. If you do, you will create a short circuit across the motor's terminals.
 
