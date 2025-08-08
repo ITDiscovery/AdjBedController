@@ -85,8 +85,8 @@ Relay K1:
 
 Relay K2
 - Common (COM): Connected to the black wire of the output.
-- Normally Open (NO): Connected to the +29V Rail.
-- Normally Closed (NC): Connected to Ground (GND).
+- Normally Open (NO): Connected to Ground (GND).
+- Normally Closed (NC): Connected to the +29V Rail.
 
 With this wiring, to make the motor run in one direction, you would activate Relay K1 to connect one motor terminal to 29V, and leave Relay K2 un-energized to connect the other motor terminal to 29V. To reverse the direction, you would activate Relay 2 and leave Relay 1 un-energized.
 
